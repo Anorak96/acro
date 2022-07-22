@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block body %}
+    <div class="container-fluid" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-4" style="height: 504px;">
+                <img src="{{ artist.artist_pic.url }}" alt="" style="height: 500px;">
+            </div>
+            <div class="col-md-7" style="padding-top: 60px;">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div>
+                        <label style="font-size: large;">Artist Name:</label>
+                        {{ form.artist_name }}
+                    </div>       
+                    <div>
+                        <label>Artist Pic:</label>
+                        {{ form.artist_pic }}
+                    </div>
+                    <div>
+                        <label>About:</label>
+                        <textarea class="comment-box form-input" >{{ form.about }}</textarea>
+                    </div>
+                    <!-- <input type="submit" value="Save changes"> -->
+                        <div class="container-login100-form-btn mt-5" style="justify-content: left;">
+                            <button class="login100-form-btn" type="submit" style="border-radius: 0px;">
+                                Submit
+                            </button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        <div class="form-group">
+            <label>{{ field.label }}</label>
+            {{ field  }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="primary-button">Edit</button>
+</form>

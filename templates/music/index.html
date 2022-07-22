@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div style="padding-top: 5px;">
+    	<div class="row">
+			<div class="col-md-7">
+				<div class="row">
+					<div class="col-12">
+						<div style="margin-bottom: 10px;">
+							<h2 style="font-size: 20px; font-weight: 400; border-bottom: 1px solid #222; position: relative; display: inline-block; margin-bottom: 10px; margin-left: 40px;"><strong>Recent</strong></h2>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div style="margin: 5px; padding-left: 20px;">
+							<a href="{% url 'music:detail' pk=taylor_swift.pk %}">
+								<img src="{{ taylor_swift.album_pic.url }}" class="img-fluid recent-image">
+							</a>
+							
+							<a class="recent-album" href="{% url 'music:detail' pk=taylor_swift.pk %}">{{ taylor_swift.name }}</a>
+							
+							<span class="d-block" style="padding-left: 80px; font-style: italic; font-weight: bold;"><a href="{% url 'music:artist' pk=taylor_swift.artist.pk %}">{{ taylor_swift.artist.artist_name }}</a>
+
+						</div>
+						
+						
+						<div class="post-meta">
+						</div>
+					</div>
+					<div class="col-md-6">
+                        {% for album in albums %}
+							<div class="post-entry-2 d-flex bg-light" style="width: 350px; height: 100px; margin-bottom: 2px; background-color: #c9c1c1!important;">
+								<div style="margin: 9px;">
+									<a href="{% url 'music:detail' album.pk %}">
+										<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" class="img-fluid" style="height: 70px; width: 70px;">
+									</a>
+								</div>
+								<div class="contents" style="padding-left: 30px;">        
+									<h2 style="overflow: hidden; margin-bottom: 0px;"><a href="{% url 'music:detail' album.pk %}">{{ album.name }}</a></h2>
+									<div class="post-meta">
+										<span class="d-block" style="font-style: italic; font-weight: bold;"><a href="{% url 'music:artist' album.artist.pk %}">{{ album.artist.artist_name }}</a></span>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						<p>
+							<a href="{% url 'music:albums' %}" class="more">See All Albums <span class="fa fa-arrow"></span></a>
+						</p>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="">
+				  	<h2 style="font-size: 20px; font-weight: 400; border-bottom: 1px solid #222; position: relative; display: inline-block; margin-bottom: 10px;">Trending</h2>
+				</div>
+				{% for album in recent %}
+				<div class="trend-entry d-flex" style="margin-bottom: 10px;">
+					<div class="number align-self-start" style="margin: 5px;">
+						<a href="{% url 'music:detail' album.pk %}">
+							<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" class="img-fluid album-pics" style="height: 50px; width: 50px;">
+						</a>
+					</div>
+					<div class="trend-contents" style="margin-left: 5px;">	
+						<h2 style="margin-bottom: 0px; font-weight: 500;"><a href="{% url 'music:detail' album.pk %}">{{ album.name }}</a></h2>
+						<div class="post-meta">
+							<span class="d-block" style="font-style: italic; font-weight: bold;"><a href="{% url 'music:artist' album.artist.pk %}">{{ album.artist.artist_name }}</a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			  </div>
+      	</div>
+</div>
+<div class="container-fluid">
+	<div class="container-fluid mb-2" style="background-color: darkslategrey; padding: 20px; padding-left: 40px;">
+		<h3 style="color: orangered;"><i class="fa fa-fire mr-1"></i>Top Albums</h3>
+	</div>
+	<div class="row">
+			{% for album in recent %}
+			<div class="col-md-2" style="margin-bottom: 10px;">
+				<div class="card p-1" style="margin: 2px;">
+					<a href="{% url 'music:detail' album.pk %}">
+						<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" style="height: 200px; width: 200px;">
+					</a>
+					<div class="card-body">
+						<h4>{{ album.name }}</h4>
+						<p>{{ album.artist.artist_name }}</p>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+	</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% load static %}
+<div class="sticky-top" id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="content" style="flex-flow: row nowrap; background: linear-gradient(to right, #FFFFFF, #2F4F4F);">
+        <div class="container-fluid">
+
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse topnav" id="navbarSupportedContent">
+                <ul class="nav navbar-nav" style="white-space: nowrap; display: flex; flex-flow: row nowrap;">
+                    <li class="nav-item ml-1" style="display: inline-block;">
+                        <a class="nav-link music-link" href="{% url 'music:index' %}" style="padding: 0px;">
+                            <img src="{% static 'music/img/logo.png' %}" style="height: 50px; width: 50px;">
+                        </a>
+                    </li>                       
+                    <li class="nav-item active ml-1 pt-1" style="display: inline-block;">
+                        <a class="nav-link music-link" href="{% url 'music:index' %}">Home</a>
+                    </li>
+                    <li class="nav-item ml-1 pt-1" style="display: inline-block;">
+                        <a class="nav-link music-link" href="{% url 'music:artists' %}">Artist</a>
+                    </li>
+                    <li class="nav-item ml-1 pt-1" style="display: inline-block;">
+                        <a class="nav-link music-link" href="{% url 'music:albums' %}">Album</a>
+                    </li>
+                    <li class="nav-item active ml-1 pt-1" style="display: inline-block;">   
+                        <h6 class="nav-link onlinetext" id="onlinetext">{{ user.username }}</h6>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <form class="form-inline my-2 my-lg-0" action="{% url 'music:search_results' %}" method="get">
+                            <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search Artist,Song,Album." aria-label="Search" style="width: 340px;">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>                            
+                    </li>
+                    
+                    <li class="pl-3">
+                        {% if user.is_authenticated %}
+                            <img class="center-block dropdown-toggle" src="{% if user.profile_pic %}{{ user.profile_pic.url }}{% else %}{% static 'music/img/avatar-3.jpg' %}{% endif %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="" style="width: 40px; border-radius: 50%;">
+                            <div class="dropdown-menu" style="left: 1170px; width: 40px;">
+                                <ul class="dropdown-list">
+                                    <li><a href="{% url 'users:profile' user.pk %}" class="dropdown-item">Profile</a></li>
+                                    <li><a href="{% url 'users:logout' %}" class="dropdown-item">Logout</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <img class="author-img dropdown-toggle" src="{% static 'music/img/404.jpg' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="" style="width: 40px; height: 40px; border-radius: 50px;">
+                            <div class="dropdown-menu" style="left: 1170px; width: 40px; border-radius: 50%;">
+                                <ul class="dropdown-list">
+                                    <li><a href="{% url 'users:register' %}" class="dropdown-item">Register</a></li>
+                                    <li><a href="{% url 'users:login' %}" class="dropdown-item">Login</a></li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>    

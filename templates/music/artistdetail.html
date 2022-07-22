@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+    <img class="author-img" src="{% if artists.artist_pic %}{{ artists.artist_pic.url }}{% else %}{% static 'music/img/avatar-3.jpg' %}{% endif %}" alt="">
+
+    <h2 class="author-name" style="">About {{ artists.artist_name|upper }}</h2>
+    
+    <a href="{% url 'music:artist_edit' artists.pk %}">
+        <button class="btn btn-secondary">
+            Edit
+        </button>
+    </a>
+{% endblock %}

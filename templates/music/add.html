@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block body %}
+    <div class="section-row section-row-music container">
+        <div class="section-title">
+            <h2 class="title">Add music</h2>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field|add_class:'form_control' }}
+                </div>
+                {% endfor %}
+            <button class="primary-button">Submit</button>
+        </form>
+    </div>
+{% endblock %}

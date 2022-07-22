@@ -1,0 +1,300 @@
+<div class="col-6 col-lg-2 infinite-item" style="padding-left: 5px;">
+                    <div style=" height: 320px; width: 230px;">
+                        <a class="artist-img" href="{% url 'music:artist' artist.pk %}">
+                        </a>
+                        <div class="artist-body">
+                            <h3 class="artist-name">
+                            </h3>
+                           
+                        </div>
+                    </div>
+                </div> 
+ 
+    <header id="header">
+        <div class="" style="background-color:rgb(31, 29, 29); ">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-12 text-center">
+						<div class="">
+                            <img class="author-img" src="{% if artists.artist_pic %}{{ artists.artist_pic.url }}{% else %}{% static 'music/img/avatar-3.jpg' %}{% endif %}" 
+                            alt="" style="">
+							<h1 class="text-uppercase" style="color: cadetblue; font-family: SourceSansPro-Regular !important;">{{ artists.artist_name }}</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </header> 
+    <div class="container-fluid">
+        
+    </div>
+    <div class="section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-7 col-sm-7 p-1">
+                    {% include 'music/tab.html' %}
+                </div>
+                <div class="col-md-4 col-11 p-1 ml-2 ml-2" style="background-color: rgb(243, 239, 235); height: 400px;">
+                    <div class="section-title">
+                        <h2 class="title mt-4 ml-10" style="background-color: rgb(243, 239, 235);">About {{ artists.artist_name }}</h2>
+                    </div>
+                    <p class="lead container-fluid">{{ artists.about }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="comment-form justify-content-center" style="margin: 3em;">
+        <h4>Add Comment</h4>
+            <form action="" method="post">
+                {% csrf_token %}
+                <textarea class="comment-box form-input" placeholder="Your Comment..."></textarea>
+                <input class="comment-submit" type="submit" name="submit" value="Submit" />
+            </form>
+    </div>
+
+# class AlbumUpdate(generic.UpdateView):
+#     model = Album
+#     fields = ['artist', 'album_title', 'genre', 'album_logo']
+
+# class create_songs(generic.CreateView):
+#     model = Song
+#     fields = ['album', 'song_title', 'song_file']
+#     success_url = reverse_lazy('music:index')
+
+# class delete_song(generic.DeleteView):
+#     model = Song
+#     success_url = reverse_lazy('music:detail')
+
+<header id="header">
+    <div id="nav">
+        <div id="nav-top">
+            <div class="container">
+                <ul class="nav-social">
+                    <li><a href="#"><i class="fas fa-dumpster"></i></a></li>
+                    <li><a href="#"><i class="fa fa-table-tennis"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+                <div class="nav-btns">
+                    
+                </div>
+            </div>
+        </div>
+        <div id="nav-bottom">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li>
+                        <a href="{% url 'music:index' %}" class="logo"><img src="{% static 'music/img/logo.png' %}" alt=""></a>
+                    </li>
+                    <li class="has-dropdown">
+                        <a>Genres</a>
+                        <div class="dropdown">
+                            <div class="dropdown-body">
+                                <ul class="dropdown-list">
+                                    <li><a href="category.html">Category page</a></li>
+                                    <li><a href="blog-post.html">Post page</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'music:add' %}">Add New</a></li>
+                    <li class="has-dropdown megamenu">
+                        <a href="">Fashion</a>
+                        <div class="dropdown">
+                            <div class="dropdown-body">
+                                <div class="row">
+                                    <h3 class="post-title title-sm"><a href="">{{ taylor.artist.name }}{{ taylor.name }}Go home</a></h3>
+                                    <ul class="post-meta">
+                                        <li><a href="author.html">{{ taylor.name }}</a></li>
+                                        <li>20 April 2018</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+{{ profile_form.as_p }}
+{{ user_form.as_p }}
+
+        <!--=================== side menu ====================-->
+        <div class="col-lg-2 col-md-3 col-12 menu_block">
+		
+                <!--logo -->
+                <div class="col-md-4" style="margin-top:10px">
+                    <h4 class="logo">DE'HEN PRODUCTION</h4>
+                    <p class="location"><b>LAGOS</b></p>
+                </div>
+                <!--logo end-->
+    
+                <!--main menu -->
+                <div class="side_menu_section">
+                    <ul class="menu_nav">
+                        <li class="active">
+                            <a href="index.html">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html">
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="services.html">
+                                Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="portfolio.html">
+                                Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--main menu end -->
+    
+                <!--filter menu -->
+                <div class="side_menu_section">
+                    <h4 class="side_title">filter by:</h4>
+                    <ul  id="filtr-container"  class="filter_nav">
+                        <li class="all active"><a href="javascript:void(0)" >all</a></li>
+                                            <li class="portraitfilter"> <a href="javascript:void(0)">Portrait</a></li>
+                                            <li class="landscapefilter"><a href="javascript:void(0)">Landscape</a></li>
+                                            <li class="lifestylefilter"><a href="javascript:void(0)">Lifestyle</a></li>
+                                            <li class="weddingfilter"><a href="javascript:void(0)">Wedding</a></li>
+                                            <li class="productfilter"><a href="javascript:void(0)">Product</a></li>
+                    <div class="side_menu_bottom_inner">
+                        <ul class="social_menu">
+                            <li>
+                                <a href="#"> <i class="ion ion-social-instagram"></i> </a>
+                            </li>
+                            <li>
+                                <a href="#"> <i class="ion ion-social-twitter"></i> </a>
+                            </li>
+                            <li>
+                                <a href="#"> <i class="ion ion-social-facebook"></i> </a>
+                            </li> 
+                            <li>
+                                <a href="#"> <i class="ion ion-social-youtube"></i> </a>
+                            </li>
+                        </ul>
+                        <div class="copy_right">
+                            <p class="copyright">&copy; 2019 Copyright All rights reserved. Designed by Scriptkidd</p>
+                        </div>
+                    </div>
+                </div>
+                        
+                    </ul>
+                </div>
+
+                 
+ <div class="container-fluid">
+        <div class="tabs-page">
+            <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 6px;">
+                <li role="presentation" class="active mr-3 title text-uppercase "><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><h6>Albums</h6></a></li>
+                <li role="presentation" class="mr-3 title text-uppercase "><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><h6>Singles</h6></a></li>
+                <li role="presentation" class="mr-3 title text-uppercase"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><h6>Comments</h6></a></li>
+			</ul>			
+        </div>
+    
+        <div class="tabs-page container-fluid">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+					<div class="col-lg-4 page-header-bg row" >
+						{% for album in albums %}
+							<div class="mt-1 mb-1">
+									<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" style="height: 50px; width: 50px;">
+							</div>
+							<div class="col-9 pl-10">
+								<ul class="post-meta pb-1 pt-2">
+									<li>
+										<a href="{% url 'music:detail' album.pk %}"><h4 class="post-title title-lg m-0">{{ album.name }}</h4></a>
+									</li>
+								</ul>
+							</div>
+							<hr style="margin-top: 5px; margin-bottom: 5px;">
+						{% endfor %}
+					</div> 			
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+					<div class="page-header-bg">
+						<div class="col-11">
+							{% for song in songs %}
+								<div class="row">
+									<div class="mt-1 mb-1">
+										<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" style="height: 50px; width: 50px;">
+									</div>
+									<div class="col-9 pl-10">
+										<ul class="post-meta pb-1 pt-2">
+											<li><h4 class="post-title title-lg m-0">{{ song.name }}</h4></li>
+										</ul>
+									</div>
+									<div class="d-flex justify-content-end" style="padding-top: 20px;">
+										<i class="fa fa-play mr-2" aria-hidden="true"></i>
+										<i class="fa fa-heart-o fa-fw mr-2 m-10"></i>
+										<i class="fa fa-share mr-2" aria-hidden="true"></i>
+										<i class="fa fa-download mr-2" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+					<div class="page-header-bg">
+							{% if artists.comment_set.all %}
+							<div class="comments">
+								{% for comment in artists.comment_set.all %}
+									<p>
+										{{ comment.text }}
+									</p>
+									<ul class="post-meta">
+										<li style="color: black;">{{ comment.user_id }}</li> 
+										<li style="color: black;">{{ comment.created_on }}</li>
+									</ul>
+									<hr>
+								{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+				</div>
+            </div>		
+        </div>
+    </div>
+    
+
+    <div class="music-play fixed-bottom" id="player" style="display: none;">
+            <div class="play-image">
+                <img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}">
+            </div>
+            <div class="play-controls">
+                <div class="controls">
+                    <div class="song-name">
+                        <h5>{{ album.name }}</h5>
+                        <p>{{ album.artist.artist_name }}</p>
+                    </div>
+                    <div class="play-icon" style="width:150px; height:50px;">
+                        <i class="fa fa-step-backward" ></i>
+                        <i class="fa fa-play" id="show-player"></i>
+                        <i class="fa fa-step-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="music-progress">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </div>

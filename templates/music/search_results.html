@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+	<h1>Search Results</h1>
+
+	<div class="section">
+		<div class="container-fluid">
+			<div class="row">
+				<!--  ALBUM RESULT -->
+				<div id="hot-post" class="col-4 hot-post">
+					<h3>ALBUM</h3>
+					<div class="container-fluid">
+						<div class="row"> 
+							{% for album in object_list %}
+								<div class="col-md-6 hot-post-right">
+									<div class="post post-thumb">
+										<a class="post-img" href="{% url 'music:detail' album.pk %}">
+											<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" alt="" style="width: 200px">
+										</a>
+										<div class="post-body">
+											<div class="post-category">
+												{% for genres in album.genre.all %}<a href="">{{ genres }} </a>{% endfor %}
+											</div>
+											<h3 class="post-title title-lg"><a href="{% url 'music:detail' album.pk %}">{{ album.name }}</a></h3>
+											<ul class="post-meta">
+												<li><a href="{% url 'music:artist' album.artist.pk %}">{{ album.artist.artist_name }}</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<!--  ALBUM RESULT END-->
+				<!--  ALBUM SONG RESULT -->
+				<div id="hot-post" class="col-4 hot-post">
+					<h3>ALBUM SONG</h3>
+					<div class="container-fluid">
+						<div class="row">
+							{% for album_song in object_list1 %}
+								<div class="col-lg-6 hot-post-right">
+									<div class="post post-thumb">
+										<a class="post-img" href="">
+											<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" alt="" style="width: 200px">							
+										</a>
+										<div class="post-body">
+											<div class="post-category">
+												{% for genres in album_song.genre.all %}<a href="">{{ genres }} </a>{% endfor %}
+											</div>
+											<h3 class="post-title title-lg" style="color: azure;">{{ album_song.name }}</h3>
+											<ul class="post-meta">
+												<li><a href="{% url 'music:detail' album_song.album.pk %}">{{ album_song.album.name }}</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<!--  ALBUM SONG RESULT END -->
+				<!--  SONG RESULT -->
+				<div id="hot-post" class="col-4 hot-post">
+					<h3>SONG</h3>
+					<div class="container-fluid">
+						<div class="row">
+							{% for song in object_list2 %}
+								<div class="col-lg-6 hot-post-right">
+									<div class="post post-thumb">
+										<a class="post-img" href="">
+											<img src="{% if song.song_pic %}{{ song.song_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" alt="" style="width: 200px">
+										</a>
+										<div class="post-body">
+											<div class="post-category">
+												{% for genres in song.genre.all %}<a href="">{{ genres }} </a>{% endfor %}
+											</div>
+											<h3 class="post-title title-lg"><a href="">{{ song.name }}</a></h3>
+											<ul class="post-meta">
+												<li><a href="">{{ song.artist.artist_name }}</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

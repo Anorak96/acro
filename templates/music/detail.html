@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load hitcount_tags %}
+
+{% block body %}
+    <div class="container-fluid" style="max-height: 442px;">
+        <div class="row mt-1 mb-2" style="max-height: 442px;">
+            <div id="post-header" class="page-header col-12 col-md-4" style="width: 300px;">
+                <div class="page-header-bg " id='detail-image' data-stellar-background-ratio="0.5" style="width: 300px;">
+                    <img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" style="height: 442px; width: 300px;">
+                </div>
+                <div class="container" style="padding-left: 0px; padding-right: 0px; max-width: 409.656px; height: 212px;">
+                    <div class="row" style="height: 212px;">
+                        <div class="col-12 col-md-12 post-body" style="height: 212px;">
+                            <div class="post-category">
+                                {% for genres in album.genre.all %}
+                                    <a href="{% url 'music:genre' genres.pk %}"> #{{ genres }} </a>
+                                {% endfor %}
+                            </div>
+                            <div style="margin-bottom: 0px; position: inherit; bottom: -130px; min-height: 40px; max-height: 137px;">
+                                <h1 class="post-title title-lg album-name">{{ album.name }}</h1>
+                            </div>
+                            <div style="position: absolute; bottom: 0;">
+                                <ul class="post-meta">
+                                    <li><a href="{% url 'music:artist' album.artist.pk %}">{{ album.artist.artist_name }}</a></li>
+                                    <li><i class="fa fa-eye"></i> {% get_hit_count for album %}</li>
+                                    <li>{{ album.release_year }}</li>
+                                    <li>Uploaded by <a href="">{{ album.user.username }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="col-md-7 pt-20 pb-10">
+                <div class="container-fluid" style="margin-top: 100px; margin-left: 100px; ">
+                    <div class="ready-player-1" id="audioplay">
+                        <audio crossorigin preload="none">
+                            <source src="{{ album.album_song.song_file.url }}" type="audio/mp3">
+                        </audio>
+                    </div>
+                </div>
+
+                <div class="row ml-10" style="margin-left: 5px; margin-top: 250px;">
+                    <button class="btn nav-control">
+                        <i class="fa fa-play mr-2"></i>PLAY
+                    </button>
+                    <button class="nav-control btn ml-3 mr-2 " aria-hidden="true" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-download mr-2"></i>FREE DOWNLOAD
+                    </button>
+                    <button class="btn ml-2 mr-2 nav-control">
+                        <i onclick="myFunction(this)" class="fa fa-heart"></i>
+                    </button>
+                    <button class="btn ml-2 mr-2 nav-control">
+                        <i class="fa fa-music"></i>
+                    </button>
+                </div>
+            </div>      -->
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container-fluid">
+            <div class="row" style="background-color: rgb(240, 238, 238);">
+                {% for song in albums_song %}
+                    <div class="col-md-5 pt-2">
+                        <div class="row">
+                            <div class="col-3 col-md-2 pr-0">
+                                <img src="{% if album.album_pic %}{{ album.album_pic.url }}{% else %}{% static 'music/img/404.jpg' %}{% endif %}" style="height: 50px; width: 50px;">
+                            </div>
+                            <div class="col-7 col-md-7">
+                                <ul class="post-meta pb-1 pt-2">
+                                    <li>
+                                        <h4 class="post-title title-lg m-0">{{ song.name }}</h4>
+                                            {% for artists in song.artist.all %}<a href="{% url 'music:artist' artists.pk %}">{{ artists }} </a>{% endfor %}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item col-7 col-md-2 pt-3">
+                        <a href="#" class="button small primary download-button" data-toggle="modal" data-target="#myModal">Download</a>
+                        <a href="#" class="button small secondary listen-button">Listen</a>
+                    </div>
+
+                    <div class="col-4 col-md-2 pt-3">
+                        <i class="fa fa-play mr-3" aria-hidden="true"></i>
+                        <i class="fa fa-heart mr-3"></i>
+                        <i class="fa fa-download"></i>
+                    </div>
+
+                    <div class="col-10 col-md-2 social-share pt-3 mt-2" style=" height:50px;">
+						<span style="font-size: 1em;">Share:</span>
+						<a class="social-icon" href="#"><i class="fa fa-facebook"></i></a>
+						<a class="social-icon" href="#"><i class="fa fa-twitter"></i></a>
+						<a class="social-icon" href="#"><i class="fa fa-google-plus"></i></a>
+						<a class="social-icon" href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                    <hr>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+                     <!--- comment --->
+<div class="comment-form justify-content-center" style="margin: 3em;">
+    <h4>Leave your comment</h4>
+    <form action="#" method="post">
+        {% csrf_token %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-1">
+                    <img src="{% if user.profile_pic %}{{ user.profile_pic.url }}{% else %}{% static 'music/img/avatar-3.jpg' %}{% endif %}" style="width: 100%; height: 80px; border-radius: 100%; margin-top: 5px;">
+                </div>
+                <div class="col-9">
+                    <div class="row">
+                        <textarea class="comment-box" required="" placeholder="Your Comment..."></textarea>
+                        <input class="comment-submit pl-3 pr-3 ml-3" type="submit" value="Submit Comment">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+                     <!--- MODALS --->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="margin: 0px; max-width: 100800px;">
+        <div class="modal-content" style="height: 500px;">
+            <div class="modal-header p-1">
+                <button type="button" class="close m-0 mr-auto p-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+                <h4 class="mr-auto">Download</h4>
+            </div>
+            <div class="modal-body container">
+                <div class="page-header-bg" data-stellar-background-ratio="0.5">
+                    <div class="row" style="background-color: rgb(243, 245, 245);">
+                        <div class="col-md-2" style="padding: 0px;">
+                            <img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" style="height: 80px; width: 70px; margin-right: 2px; margin-left: 10px;">
+                        </div>
+                        <div class="col-9 col-md-9" style="padding: 0px;">
+                            <ul class="post-meta pb-2 pt-2 d-flex vert">
+                                <li class="pb-2 pt-2">
+                                    <h4 style="margin: 0px;">{{ album.name }}</h4>
+                                    <h4 style="margin: 0px; font-weight: 400;">{{ album.artist.artist_name }}</h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <a href="{{ song.song_file.url }}" download>
+                            <button class="btn btn-secondary">Download</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
