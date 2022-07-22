@@ -34,11 +34,11 @@
 							<div class="post-entry-2 d-flex bg-light" style="width: 350px; height: 100px; margin-bottom: 2px; background-color: #c9c1c1!important;">
 								<div style="margin: 9px;">
 									<a href="{% url 'music:detail' album.pk %}">
-										<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" class="img-fluid" style="height: 70px; width: 70px; font-size: 18px;">
+										<img src="{% if album.album_pic %}{{ album.album_pic.url }}{%else %}{% static 'music/img/404.jpg' %}{% endif %}" class="img-fluid" style="height: 70px; width: 70px;">
 									</a>
 								</div>
 								<div class="contents" style="padding-left: 30px;">        
-									<h2 style="overflow: hidden; margin-bottom: 0px;"><a href="{% url 'music:detail' album.pk %}">{{ album.name }}</a></h2>
+									<h2 style="overflow: hidden; margin-bottom: 0px; font-size: 18px;"><a href="{% url 'music:detail' album.pk %}">{{ album.name }}</a></h2>
 									<div class="post-meta">
 										<span class="d-block" style="font-style: italic; font-weight: bold;"><a href="{% url 'music:artist' album.artist.pk %}">{{ album.artist.artist_name }}</a></span>
 									</div>
