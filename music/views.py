@@ -2,7 +2,6 @@ import django
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.db.models import Q
-from hitcount.views import HitCountDetailView
 from django.urls import reverse_lazy
 from .forms import CommentForm, ArtistEditForm, AlbumForm
 from .models import Artist, Album, Song, Genres, Album_song
@@ -16,7 +15,9 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['taylor_swift'] = Album.objects.filter()[4:5].get()
-        context['recent'] = Album.objects.all().order_by('-created_date')[:6]
+        context['trending'] = Album.objects.get(name='Revival')
+        context['songs'] = Song.objects.all().order_by('-created_date')[:4]
+        context['genres'] = Genres.objects.all()[:5]
         context['artists'] = Artist.objects.all()[0:6]
         context['trents'] = Album.objects.all()[4:10]
         return context
@@ -30,6 +31,9 @@ class AlbumView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk_ = self.kwargs.get("pk")
+        album_view = get_object_or_404(Album, pk=pk_)
+        album_view.views += 1  # Increase view count
+        album_view.save()
         context['album'] = Album.objects.filter(genre=pk_)
         context['genre'] = Genres.objects.all()
         return context
@@ -103,7 +107,7 @@ class AlbumEdit(generic.UpdateView):
     pk_url_kwarg = 'pk'
     success_url = reverse_lazy('music:albums')
 
-class PostDetailView(HitCountDetailView):
+class PostDetailView(generic.DetailView):
     model = Album
     template_name = 'music/detail.html'
     context_object_name = 'album'

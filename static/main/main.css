@@ -1,0 +1,33 @@
+.main{
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    gap: 4px;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+}
+.left{
+    background-color: lightslategrey;
+}
+.right{
+}
+.recent-album{
+    background-color: white;
+    padding: 8px;
+}
+.recent-albums{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 3px;
+    
+}
+.recent-album-image{
+    height: 90px;
+    border-radius: 5%;
+    /* width: 70px; */
+    object-fit: contain;
+}
+.right-nav{
+    margin: 6px 0px;
+    justify-content: space-between;
+    padding: 6px;
+}

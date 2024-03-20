@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'music.apps.MusicConfig',  # musicapp
     'users.apps.UsersConfig',
     'widget_tweaks',
-    'hitcount',
+    # 'hitcount',
     'crispy_forms',
 ]
 
@@ -135,9 +135,4 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
-HITCOUNT_KEEP_HIT_ACTIVE = {'days': 7}
-HITCOUNT_HITS_PER_IP_LIMIT = 0  # unlimited
-HITCOUNT_EXCLUDE_USER_GROUP = ()  # not used
-HITCOUNT_KEEP_HIT_IN_DATABASE = {'days': 30}
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -20,10 +20,10 @@ class Album_songInline(admin.TabularInline):
     extra = 1
 
 class AlbumAdmin(admin.ModelAdmin):
-    list_display = ('name', 'artist', 'genre_display', 'release_year', 'user')
+    list_display = ('name', 'artist', 'image_tag', 'genre_display', 'release_year', 'user')
     list_per_page = 20
     fieldsets = [
-        (None, {'fields': ['name', 'artist', 'album_pic', 'full_album', 'genre', 'release_year', 'user']}),
+        (None, {'fields': ['name', 'artist', 'album_pic', 'full_album', 'genre', 'release_year', 'user', 'views']}),
     ]
     list_filter = ('artist', 'genre')
     search_fields = ('name', 'artist',)

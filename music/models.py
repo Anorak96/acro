@@ -1,14 +1,14 @@
 import datetime
 from django.db import models
 from django.shortcuts import reverse
-from hitcount.models import HitCount
-from django.contrib.contenttypes.fields import GenericRelation
 from users.models import MyUser
+import os
+from django.utils.safestring import mark_safe
 
 YEAR_CHOICES = [(r, r) for r in range(1984, datetime.date.today().year+1)]
 
 class Genres(models.Model):
-    genre = models.CharField(max_length=10, primary_key=True)
+    genre = models.CharField(max_length=20, primary_key=True)
 
     class Meta:
         verbose_name_plural = "Genres"
@@ -24,8 +24,11 @@ def get_default_artist_image():
     return "img/artist.jpg"
 
 def get_artist_image_path(instance, filename):
-    return '{0}/{1}/{2}'.format('artist', instance.artist_name, filename)
-
+    upload_to = '{}/{}'.format('artist', instance.artist_name)
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(instance.artist_name, ext)
+    return os.path.join(upload_to, filename)
+    
 class Artist(models.Model):
     artist_name = models.CharField(max_length=30, primary_key=True)
     artist_pic = models.ImageField(upload_to=get_artist_image_path, blank=True, default=get_default_artist_image)
@@ -45,7 +48,10 @@ def get_default_album_image():
     return "img/album.jpg"
 
 def get_album_image_path(instance, filename):
-    return '{0}/{1}/{2}'.format('album', instance.name, filename)
+    upload_to = '{}/{}'.format('album', instance.name)
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(instance.name, ext)
+    return os.path.join(upload_to, filename)
 
 class Album(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
@@ -56,8 +62,8 @@ class Album(models.Model):
     release_year = models.IntegerField(choices=YEAR_CHOICES, default=datetime.datetime.now().year)
     created_date = models.DateTimeField(verbose_name='date created', auto_now_add=True)
     about = models.TextField(max_length=400, default=name)
-    full_album = models.FileField(upload_to='album zip', blank=True)
-    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
+    full_album = models.FileField(upload_to='album_zip', blank=True)
+    views = models.IntegerField(default=0)
 
     class Meta:
         ordering = ('-created_date',)
@@ -68,6 +74,9 @@ class Album(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="100" height="100" />' % (self.album_pic))
 
 class Album_song(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
@@ -89,7 +98,7 @@ class Song(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100, primary_key=True)
     artist = models.ManyToManyField(Artist)
-    song_pic = models.ImageField(upload_to='song_pic', blank=True)
+    song_pic = models.ImageField(upload_to='song_pic', blank=True, default=get_default_album_image)
     song_file = models.FileField(upload_to='song', blank=True)
     created_date = models.DateTimeField(verbose_name='date created', auto_now_add=True)
     genre = models.ManyToManyField(Genres)
