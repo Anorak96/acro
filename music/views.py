@@ -20,6 +20,7 @@ class IndexView(generic.ListView):
         context['genres'] = Genres.objects.all()[:5]
         context['artists'] = Artist.objects.all()[0:6]
         context['trents'] = Album.objects.all()[4:10]
+        context['playing'] = Album_song.objects.get(name='Chandelier')
         return context
 
 class AlbumView(generic.ListView):
@@ -31,16 +32,13 @@ class AlbumView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk_ = self.kwargs.get("pk")
-        album_view = get_object_or_404(Album, pk=pk_)
-        album_view.views += 1  # Increase view count
-        album_view.save()
         context['album'] = Album.objects.filter(genre=pk_)
         context['genre'] = Genres.objects.all()
         return context
 
 class ArtistView(generic.ListView):
     model = Artist
-    paginate_by = 12
+    paginate_by = 15
     template_name = 'music/artists.html'
     context_object_name = 'artists'
     # queryset = Artist.objects.all()
@@ -53,6 +51,9 @@ class AlbumDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk_ = self.kwargs.get("pk")
+        album_view = get_object_or_404(Album, pk=pk_)
+        album_view.views += 1  # Increase view count
+        album_view.save()
         context['albums_song'] = Album_song.objects.filter(album_id=pk_).order_by('num')
         context['song'] = Album_song.objects.filter(name=pk_)
         return context

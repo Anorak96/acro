@@ -25,15 +25,15 @@ img{
 
 html,
 body{
-    background: linear-gradient(#050505, #18181d);
-    height: 100vh;
+    background: linear-gradient(#050505, #18181d) !important;
+    height: 100vh !important;
 }
 
 .container{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 4fr 2fr;
-    background: linear-gradient(#050505, #18181d);;
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr 6fr !important;
+    background: linear-gradient(#050505, #18181d) !important;
 }
 
 .container .sidebar{
@@ -127,7 +127,7 @@ body{
 }
 
 .container main{
-    padding: 20px 36px;
+    padding: 0px 36px 20px 36px;
 }
 
 .container main header{
@@ -363,7 +363,8 @@ body{
     padding: 20px 36px 20px 0;
 }
 
-.container .right-section .profile{
+/* .container .right-section .profile{ */
+.profile{
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -371,11 +372,13 @@ body{
     margin-bottom: 40px;
 }
 
-.container .right-section .profile .user{
+/* .container .right-section .profile .user{ */
+.profile .user{
     display: flex;
 }
 
-.container .right-section .profile .user .left{
+/* .container .right-section .profile .user .left{ */
+.profile .user .left{
     display: flex;
     align-items: center;
     background: #32323d;
@@ -383,12 +386,14 @@ body{
     border-radius: 6px 0 0 6px;
 }
 
-.container .right-section .profile .user .left img{
+/* .container .right-section .profile .user .left img{ */
+.profile .user .left img{
     width: 30px;
     height: 30px;
 }
 
-.container .right-section .profile .user .right{
+/* .container .right-section .profile .user .right{ */
+.profile .user .right{
     background-color: #25252d;
     border-radius: 0 6px 6px 0;
     padding: 13px;
@@ -399,7 +404,7 @@ body{
     color: #fff;
     background-color: #202026;
     border-radius: 6px;
-    height: 88%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -608,7 +613,7 @@ body{
     }
     
     .container .right-section .music-player{
-        height: 88%;
+        height: 100% ;
     }
 
     .container .right-section .music-player .song-info img{

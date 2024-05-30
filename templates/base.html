@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Musicaudiencia</title>
-	<link rel="shortcut icon" href="{% static 'music/image/favicon.ico' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/adminlte.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/all.min.css' %}" >
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="shortcut icon" href="{% static 'music/image/favicon.ico' %}"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">   
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">    
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/all.min.css' %}" >
     <!-- Script -->
     <script type="text/javascript" src="{% static 'js/jquery-3.7.1.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
@@ -21,10 +19,101 @@
     <script type="text/javascript" src="{% static 'main/main.js' %}"></script>    
     <script type="text/javascript" src="{% static 'main/script.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/adminlte.min.js' %}"></script>
+    {% block css %}{% endblock %}
 </head>
 <body>
-{% block body %}
-    
-{% endblock %}
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <button class="menu-btn" id="menu-close">
+                    <i class='bx bx-log-out-circle'></i>
+                </button>
+                <i class='bx bx-pulse'></i>
+                <a href="#">Acro</a>
+            </div>
+            <div class="menu">
+                <h5>Menu</h5>
+                <ul>
+                    <li>
+                        <i class='bx bxs-bolt-circle'></i>
+                        <a href="#">Explore</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-volume-full'></i>
+                        <a href="{% url 'music:albums' %}">Genres</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-album'></i>
+                        <a href="{% url 'music:albums' %}">Albums</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-microphone'></i>
+                        <a href="{% url 'music:artists' %}">Artists</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-radio'></i>
+                        <a href="#">Poddcasts</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu">
+                <h5>Library</h5>
+                <ul>
+                    <li>
+                        <i class='bx bx-undo'></i>
+                        <a href="#">Recent</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-photo-album'></i>
+                        <a href="#">Albums</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-heart'></i>
+                        <a href="#">Favourites</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-folder'></i>
+                        <a href="#">Local</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu">
+                <h5>Playlist</h5>
+                <ul>
+                    <li>
+                        <i class='bx bxs-plus-square'></i>
+                        <a href="#">Create New</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-caret-right-circle'></i>
+                        <a href="#">Best of 2023</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-caret-right-circle'></i>
+                        <a href="#">Best of 2022</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-caret-right-circle'></i>
+                        <a href="#">Kael Fischer</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="playing">
+                <div class="top">
+                    <img src="assets/current.png">
+                    <h4>Apple<br>Homepod</h4>
+                </div>
+                <div class="bottom">
+                    <i class='bx bx-podcast'></i>
+                    <p>Playing On Device</p>
+                </div>
+            </div>
+        </aside>
+        <main>
+            {% include 'nav.html' %}
+            {% block body %}
+            {% endblock %}
+        </main>
+    </div>
 </body>
 </html>

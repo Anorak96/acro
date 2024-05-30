@@ -82,7 +82,7 @@ class Album_song(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
     num = models.IntegerField(blank=True)
     name = models.CharField(max_length=100, primary_key=True)
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='album')
     artist = models.ManyToManyField(Artist, related_name='album_songs')
     song_file = models.FileField(upload_to='albumsong', blank=True)
     genre = models.ManyToManyField(Genres)
