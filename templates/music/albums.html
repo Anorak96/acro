@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="grid mt-20" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+        {% for album in albums %}
+            <div class="column">
+                <a href="{% url 'music:detail' album.pk %}">
+                    <img src="{{album.album_pic.url}}" alt="" style="height: 200px;">
+                    <span class="text-center grid white">{{album.name|truncatechars:20}}</span>
+                    <span><a class="text-center grid grey" href="{% url 'music:artist' album.artist %}">{{album.artist}}</a></span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

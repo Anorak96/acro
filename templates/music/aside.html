@@ -1,0 +1,92 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">    
+<script type="text/javascript" src="{% static 'main/script.js' %}"></script>
+
+<aside class="sidebar">
+    <div class="logo">
+        <button class="menu-btn" id="menu-close">
+            <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <i class="fa-solid fa-wave-square"></i>
+        <a href="{% url 'music:index' %}">Acro</a>
+    </div>
+
+    <div class="menu">
+        <h5>Menu</h5>
+        <ul>
+            <li>
+                <i class="fa-solid fa-bolt"></i>
+                <a href="#">Explore</a>
+            </li>
+            <li>
+                <i class='bx bxs-volume-full'></i>
+                <a href="{% url 'music:genres' %}">Genres</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-record-vinyl"></i>
+                <a href="{% url 'music:albums' %}">Albums</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-microphone-lines"></i>
+                <a href="{% url 'music:artists' %}">Artists</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-podcast"></i>
+                <a href="#">Podcasts</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="menu">
+        <h5>Library</h5>
+        <ul>
+            <li>
+                <i class="fa-solid fa-window-restore"></i>
+                <a href="#">Recent</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-record-vinyl"></i>
+                <a href="#">Albums</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-heart"></i>
+                <a href="#">Favourites</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-folder"></i>
+                <a href="#">Local</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="menu">
+        <h5>Playlist</h5>
+        <ul>
+            <li>
+                <i class='bx bxs-plus-square'></i>
+                <a href="#">Create New</a>
+            </li>
+            <li>
+                <i class='bx bxs-caret-right-circle'></i>
+                <a href="#">Best of 2023</a>
+            </li>
+            <li>
+                <i class='bx bxs-caret-right-circle'></i>
+                <a href="#">Best of 2022</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="playing">
+        <div class="top">
+            <img src="{% static 'image/logo.png' %}">
+            <h4>Apple<br>Homepod</h4>
+        </div>
+        <div class="bottom">
+            <i class='bx bx-podcast'></i>
+            <p>Playing On Device</p>
+        </div>
+    </div>
+
+</aside>

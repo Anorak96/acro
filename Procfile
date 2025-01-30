@@ -1,0 +1,1 @@
+web: gunicorn finalbrand.wsgi --log-file -

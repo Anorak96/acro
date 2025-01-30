@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Musicaudiencia</title>
+	<link rel="shortcut icon" href="{% static 'image/favicon.ico' %}"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">   
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/all.min.css' %}" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Script -->
+    <script type="text/javascript" src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.7.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script type="text/javascript" src="{% static 'main/main.js' %}"></script>    
+    <script type="text/javascript" src="{% static 'main/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/adminlte.min.js' %}"></script>
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        {% include 'music/aside.html' %}
+        <main>
+            {% include 'nav.html' %}
+            {% block body %}
+            {% endblock %}
+        </main>
+    </div>
+</body>
+</html>

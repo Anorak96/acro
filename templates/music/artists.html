@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="grid mt-20" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+        {% for artist in artists %}
+            <div class="column">
+                <a href="{% url 'music:artist' artist.pk %}">
+                    <img src="{{artist.artist_pic.url}}" alt="" style="height: 200px;"><br>
+                    <span class="text-center">{{artist.artist_name}}</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

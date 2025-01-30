@@ -1,0 +1,27 @@
+{% load static %}
+<header style="margin-top: 10px;">
+    <div class="nav-links">
+        <button class="menu-btn" id="menu-open">
+            <i class='bx bx-menu'></i>
+        </button>
+        <a href="#">Music</a>
+        <a href="#">Live</a>
+        <a href="#">Podcast</a>
+    </div>
+    <div class="search">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Type here to search">
+    </div>
+    <div class="profile mb-0">
+        <i class='bx bxs-bell'></i>
+        <i class='bx bxs-cog'></i>
+        <div class="user">
+            <div class="left">
+                <img src="{{request.user.profile_pic.url}}">
+            </div>
+            <div class="right">
+                <h5>{{request.user.username}}</h5>
+            </div>
+        </div>
+    </div>
+</header>

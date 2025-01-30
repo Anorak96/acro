@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="grid mt-20" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+
+        {% for genre in genres %}
+            {% if genre.album_genre.all.count > 0 %}
+                <a href="{% url 'music:genre' genre.pk %}">
+                    <div class="column" style="padding: 10px 5px; background-color: #32323d; border-radius: 6px;">
+                        <span class="text-center">{{genre.genre}} </span>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="section">
+    <div class="container-fluid">
+        <h3 style="color: white">Album for {{ genre.genre }}</h3>
+        <div id="hot-post" class="hot-post" style="display: grid; grid-template-columns: repeat(4, minmax(200px, 1fr)); gap: 10px;">
+            {% for alb in album %}
+                <div >
+                    <div class="post post-thumb">
+                        <a class="post-img" href="{% url 'music:detail' alb.pk %}">
+                            <img src="{% if alb.album_pic %}{{ alb.album_pic.url }}{% else %}{% static 'image/404.jpg' %}{% endif %}"
+                                alt="" style="width: 100%;">
+                        </a>
+                        <div class="post-body">
+                            <h3 class="post-title title-lg"><a href="{% url 'music:detail' alb.pk %}">{{ alb.name }}</a></h3>
+                            <a href="{% url 'music:artist' alb.artist.pk %}">{{ alb.artist.artist_name }}</a>
+                        </div>
+                    </div>
+                </div>            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

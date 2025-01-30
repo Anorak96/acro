@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <div id="colorlib-notfound">
+        <div class="colorlib-notfound">
+            <div class="colorlib-notfound-404 container-fluid">
+                <h1>OOPS!</h1>
+            </div>
+            <h2 id="colorlib_404_customizer_page_heading">Page Not Found</h2>
+
+            <p id="colorlib_404_customizer_content">The page you are looking for does not exist or has become unavailable.</p>
+
+            <a href="{% url 'music:index' %}" id="colorlib_404-customizer_button_text">Go Home</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
