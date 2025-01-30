@@ -24,10 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4ke8oj2fb6c$5=80ytt$$af(=n7=q6-g0%ijcwy1!jim!a7wo^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
-
+ALLOWED_HOSTS = ['acro-pdfd.onrender.com', '*']
 
 # Application definition
 
